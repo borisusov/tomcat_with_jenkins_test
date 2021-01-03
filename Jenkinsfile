@@ -11,8 +11,7 @@ pipeline {
                 
                 copyArtifacts(projectName: 'hello-world-servlet/master');
                 sh "pwd"
-                sh "ls -lah"
-                
+                sh "ls -lah"                
                 
             }    
         }
@@ -29,8 +28,7 @@ pipeline {
         stage('Copy Artifact'){
             steps{
 
-                sh "find . -name *.war"
-                
+                sh "find . -name *.war"                
                 
                 sh "curl -v http://54.81.25.125:8080/helloworld/ > curl.txt"
                 sh "find . -name curl.txt "
