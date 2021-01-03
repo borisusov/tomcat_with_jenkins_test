@@ -32,7 +32,8 @@ pipeline {
                 sh "ls -la"
                 sh "curl -v http://54.81.25.125:8080/helloworld/ > curl.txt"
                 sh "find . -name curl.txt "
-                
+                sh "cat curl.txt"
+
                 // sh "docker cp d6e1645e2d10: ./target/hello-world-servlet-1.1.3-SNAPSHOT.war /tmp"
                 
 
