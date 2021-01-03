@@ -21,7 +21,7 @@ pipeline {
                 
                 sh "find . -name *.war"
                 sh "find . -name *.xml"
-                
+                sh "ls -la"
             }    
         }
         
@@ -29,7 +29,7 @@ pipeline {
             steps{
 
                 sh "find . -name *.war"                
-                
+                sh "ls -la"
                 sh "curl -v http://54.81.25.125:8080/helloworld/ > curl.txt"
                 sh "find . -name curl.txt "
                 
