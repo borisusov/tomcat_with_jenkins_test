@@ -5,7 +5,7 @@ pipeline {
     // }
     environment {
 
-        HOST_ADDRESS = "54.81.25.125"
+        TOMCAT_HOST_ADDRESS = "54.81.25.125"
 
     }
     stages{
@@ -33,7 +33,7 @@ pipeline {
 
                 sh "find . -name *.war"                
                 sh "ls -la"
-                sh "curl -v http://${HOST_ADDRESS}:8080/helloworld/ > curl.txt"
+                sh "curl -v http://${TOMCAT_HOST_ADDRESS}:8080/helloworld/ > curl.txt"
                 sh "find . -name curl.txt "
                 sh "cat curl.txt"
 
