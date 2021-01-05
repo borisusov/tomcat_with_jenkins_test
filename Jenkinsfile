@@ -33,7 +33,7 @@ pipeline {
 
                 sh "find . -name *.war"                
                 sh "ls -la"
-                sh "whoami"
+            //    sh "whoami"
                 sh "curl -v http://${TOMCAT_HOST_ADDRESS}:8080/helloworld/ > curl.txt"
 
              //   sh "scp /tmp/hello-world.war -v ec2-user@${TOMCAT_HOST_ADDRESS}:/tmp" 
