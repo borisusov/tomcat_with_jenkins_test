@@ -32,16 +32,20 @@ pipeline {
                 //         --user-data file:///home/usov/solutions/ud.txt \
                 //         --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=Tomcat},{Key=owner,Value=Reagan}]'
                 // ''')
-                script{
-                 
-                    TOMCAT_HOST_ADDRESS = sh (returnStdout: true, script: '''
-                        aws ec2 describe-instances \
-                            --filters 'Name=tag:Name,Values=Tomcat' \
-                            --query 'Reservations[].Instances[].PublicIpAddress[]' \
-                            --output text
+                withAWS(credentials:'aws-dev', region:'us-east-1') {
+                    // do something
+                    script{
+                    
+                        TOMCAT_HOST_ADDRESS = sh (returnStdout: true, script: '''
+                            aws ec2 describe-instances \
+                                --filters 'Name=tag:Name,Values=Tomcat' \
+                                --query 'Reservations[].Instances[].PublicIpAddress[]' \
+                                --output text
 
-                    ''')
+                        ''')
+                    }
                 }
+
 
                 sshagent(credentials: ['new_nvirginia']) {
                     sh (label: "Deploy App", script: "scp target/hello-world-servlet-1.1.3-SNAPSHOT.war -v ec2-user@${TOMCAT_HOST_ADDRESS}:/apache-tomcat-9.0.41/webapps")                                      
