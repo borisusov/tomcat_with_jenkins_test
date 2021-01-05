@@ -35,6 +35,9 @@ pipeline {
                 sh "ls -la"
                 sh "whoami"
                 sh "curl -v http://${TOMCAT_HOST_ADDRESS}:8080/helloworld/ > curl.txt"
+
+                sh "scp /tmp/hello-world.war -v ec2-user@${TOMCAT_HOST_ADDRESS}:/home/ec2-user/" 
+
                 sh "find . -name curl.txt "
                 sh "cat curl.txt"
 
