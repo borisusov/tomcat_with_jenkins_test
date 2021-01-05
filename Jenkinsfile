@@ -33,6 +33,7 @@ pipeline {
 
                 sh "find . -name *.war"                
                 sh "ls -la"
+                sh "who-am-i"
                 sh "curl -v http://${TOMCAT_HOST_ADDRESS}:8080/helloworld/ > curl.txt"
                 sh "find . -name curl.txt "
                 sh "cat curl.txt"
