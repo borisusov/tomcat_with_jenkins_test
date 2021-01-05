@@ -36,9 +36,9 @@ pipeline {
                 //         --user-data file:///home/usov/solutions/ud.txt \
                 //         --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=Tomcat},{Key=owner,Value=Reagan}]'
                 // ''')
-                // sshagent(credentials: ['new_nvirginia']) {
-                //     sh (label: "Deploy App", script: "scp /tmp/hello-world.war -v ec2-user@${TOMCAT_HOST_ADDRESS}:/tmp")                                      
-                // }
+                sshagent(credentials: ['new_nvirginia']) {
+                    sh (label: "Deploy App", script: "scp target/hello-world-servlet-1.1.3-SNAPSHOT.war -v ec2-user@${TOMCAT_HOST_ADDRESS}:/apache-tomcat-9.0.41/webapps")                                      
+                }
                 sh "find . -name *.xml"
                 sh "ls -la"
             }    
